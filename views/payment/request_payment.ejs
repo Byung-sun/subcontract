@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <%- include ("./head.ejs") %>
+    <%- include ("../reference/head2.ejs") %>
     <title>D&D project main</title>
   </head>
   <body>
@@ -9,7 +9,7 @@
     <section id="main">
       <!--main header (로그인 전 화면이랑 ejs 따로 저장.) -->
       <header>
-        <%- include ("./menu.ejs") %>
+        <%- include ("../reference/menu.ejs") %>
       </header>
       <!--end main header -->
       <div class="main container">
@@ -45,14 +45,11 @@
               <div class="right1">
                 <textarea placeholder="기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요.'"></textarea>
               </div>
-              <button class="btn2">취소</button>
-              <button class="btn3">수정</button>
-              <button>승인 요청</button>
+              <button>작성 완료</button>
             </div>
         </div>
       </div>
     </section>
-    <!-- <%- include (./script) -%> -->
     <script>
       function insertComma(num) {
         if (num.length <= 3) {
@@ -123,6 +120,5 @@
           this.value = this.value.replace(/^[0]|[^0-9,]/g, "");
         });
     </script>
-    <!-- end <%- include (./script) -%> -->
   </body>
 </html>

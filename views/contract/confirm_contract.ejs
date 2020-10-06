@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include ("../reference/head2.ejs") %>
+    <title>D&D project main</title>
+  </head>
+  <body>
+    <!--main section-->
+    <section id="main">
+      <!--main header (로그인 전 화면이랑 ejs 따로 저장.) -->
+      <header><%- include ("../reference/menu.ejs") %></header>
+      <!--end main header -->
+      <div class="paperContainer">
+        <form method="POST" action="/contract/sign">
+          <div class="paper">
+            <div class="paperTitle">
+              <p>건설업종 표준하도급계약서</p>
+            </div>
+            <div class="workInfo">
+              <p id="docNum">문서번호 :</p>
+              <p>1. 발주자 :</p>
+              <p>૦ 도급공사명 :</p>
+              <p>2. 하도급공사명 :</p>
+              <p>૦ 하도급공사 등록업종 :</p>
+              <p>3. 공사장소 :</p>
+              <p>4. 공사기간 : 착공 년 월 일 ~ 준공 년 월 일</p>
+              <p>5. 계약금액 : 일금 원정(₩ )</p>
+              <p>૦ 공급가액 :</p>
+              <p>૦ 노무비 :</p>
+              <p>건설산업기본법 시행령 제 84조 규정에 의한 노무비</p>
+            </div>
+            <div class="moneyInfo">
+              <p>6. 대금의 지급</p>
+              <p>가. 선급금</p>
+              <p>૦ 계약체결 후 ( ) 일 이내에 일금 원정(₩ )</p>
+              <p>
+                ※발주자로부터 선급금을 지급받은 날 또는 계약일로부터 15일 이내
+                그 내용과 비율에 따름.
+              </p>
+              <p>(1) ( )월 ( ) 회</p>
+              <p>(2) 목적물 인수일로부터 ( )일 이내</p>
+              <p>지급방법 : 현금 %, 어음 %, 어음대체결제수단 %</p>
+              <p>
+                ※발주자로부터 지급받은 현금비율 이상 지급, 지급 받은 어음 등의
+                지급기간을 초과하지 않는 어음 등을 교부.
+              </p>
+            </div>
+            <div class="paperBottom">
+              <button class="btn3">수정 요청</button>
+              <button type="submit">서명</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

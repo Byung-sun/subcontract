@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <%- include ("../reference/head2.ejs") %>
     <title>D&D project write contract</title>
   </head>
   <body>
@@ -11,15 +9,7 @@
     <section id="main">
       <!--main header -->
       <header>
-        <div class="mainLogo"><span>로고 및 회사명</span></div>
-        <ul class="mainNav">
-          <li>Home</li>
-          <li>Contract</li>
-          <li>Payment</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li id="welcome">환영합니다. 원도급님.</li>
-        </ul>
+        <%- include ("../reference/menu.ejs") %>
       </header>
       <!--end main header -->
       <div class="main container">
@@ -30,7 +20,7 @@
           </div>
           <div class="writeContract">
             <div class="contractLeft">
-              <form>
+              <form method="POST" action="/contract/confirm">
                   <input
                     type="text"
                     placeholder="선급금 입금기간 (N 일 이내)"
@@ -102,13 +92,12 @@
               </div>
               <div class="contractBottom">
                 <button onclick="location.href =  '/writeContract.html';">이전 페이지</button>
-                <button class="btn2">작성 완료</button>
+                <button type="submit" class="btn2">작성 완료</button>
             </form>
           </div>
         </div>
       </div>
     </section>
-    <!-- <%- include (./script) -%> -->
     <script>
       function insertComma(num) {
         if (num.length <= 3) {
@@ -179,6 +168,5 @@
           this.value = this.value.replace(/^[0]|[^0-9,]/g, "");
         });
     </script>
-    <!-- end <%- include (./script) -%> -->
   </body>
 </html>

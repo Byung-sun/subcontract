@@ -3,23 +3,23 @@ var router = express.Router();
 
 module.exports = function () {
   router.get("/", function (req, res, next) {
-    res.render("payment_company");
+    res.render("payment/payment_company");
   });
 
   router.route("/list").get(function (req, res, next) {
-    res.render("payment_list");
+    res.render("payment/payment_list");
   });
 
   router.route("/request").get(function (req, res, next) {
-    res.render("request_payment");
+    res.render("payment/request_payment");
   });
 
   router.route("/view").get(function (req, res, next) {
-    res.render("view_payment");
+    res.render("payment/view_payment");
   });
 
   router.route("/refuse").get(function (req, res, next) {
-    res.render("refuse_payment");
+    res.render("payment/refuse_payment");
   });
 
   return router;

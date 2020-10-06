@@ -3,11 +3,11 @@ var router = express.Router();
 
 module.exports = function () {
   router.get("/", function (req, res, next) {
-    res.render("login");
+    res.render("index/login");
   });
 
   router.route("/signup").get(function (req, res, next) {
-    res.render("signUp");
+    res.render("index/signUp");
   });
 
   router.route("/confirm_email").get(function (req, res, next) {
@@ -39,7 +39,7 @@ module.exports = function () {
   });
 
   router.route("/find_id").get(function (req, res, next) {
-    res.render("findId");
+    res.render("index/findId");
   });
 
   router.route("/search_id").post(function (req, res, next) {
@@ -49,7 +49,7 @@ module.exports = function () {
   });
 
   router.route("/find_pass").get(function (req, res, next) {
-    res.render("findPw");
+    res.render("index/findPw");
   });
 
   router.route("/search_pass").post(function (req, res, next) {
@@ -64,7 +64,7 @@ module.exports = function () {
     const pass = req.body.password;
     console.log("id = ", id, "pass = ", pass);
 
-    res.render("main");
+    res.render("index/main");
   });
 
   return router;

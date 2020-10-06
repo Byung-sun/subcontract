@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <%- include ("./head2.ejs") %>
+    <%- include ("../reference/head2.ejs") %>
     <title>D&D project main</title>
   </head>
   <body>
     <!--main section-->
     <section id="main">
       <!--main header (로그인 전 화면이랑 ejs 따로 저장.) -->
-      <header><%- include ("./menu.ejs") %></header>
+      <header><%- include ("../reference/menu.ejs") %></header>
       <!--end main header -->
-      <div class="paperContainer">
-        <div class="paper">
+      <div class="m_paperContainer">
+        <div class="requestArea">
+          <textarea
+            placeholder="계약서에 수정이 필요한 부분을 작성해주세요."
+          ></textarea>
+          <button>수정 요청</button>
+        </div>
+        <div class="m_paper">
           <div class="paperTitle">
             <p>건설업종 표준하도급계약서</p>
           </div>
@@ -43,9 +49,6 @@
               ※발주자로부터 지급받은 현금비율 이상 지급, 지급 받은 어음 등의
               지급기간을 초과하지 않는 어음 등을 교부.
             </p>
-          </div>
-          <div class="paperBottom">
-            <button>확인</button>
           </div>
         </div>
       </div>

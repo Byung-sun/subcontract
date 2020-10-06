@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <%- include ("./head.ejs") %>
+    <%- include ("../reference/head.ejs") %>
     <title>D&D project main</title>
   </head>
+  <script>
+    function list_view(){
+      location.href="/payment/list"
+    }
+  </script>
   <body>
     <!--main section-->
     <section id="main">
       <!--main header (로그인 전 화면이랑 ejs 따로 저장.) -->
       <header>
-        <%- inclide ("./menu.ejs") %>
+        <%- include ("../reference/menu.ejs") %>
       </header>
       <!--end main header -->
       <div class="main container">
@@ -27,37 +32,33 @@
                             <th>기성금</th>
                             <th>예외금</th>
                           </tr>
-                            <tr>
+                            <tr onclick="list_view()">
                             <!-- 첫번째 줄 시작 -->
                              <td>1</td>
                              <td>삼성중공업</td>
                              <td>김승빈</td>
-                             <td>2020.09.11</td>
+                             <td>2020.09.24</td>
                              <td>123,000,000 원</td>
-                             <td>3,000,000</td>
+                             <td>3,000,000,000 원</td>
                             </tr><!-- 두번째 줄 끝 -->
                             <tr>
                             <td>2</td>
-                             <td>삼성중공업</td>
+                             <td>보광체인코팅</td>
                              <td>김승빈</td>
-                             <td>2019.11.30</td>
-                             <td>300,000,000 원</td>
+                             <td>2020.07.24</td>
+                             <td>5,100,000,000 원</td>
                              <td></td>
                             </tr>
-                            
                         </table>
                     </div>
-                    <div class="Request">
-                    <button>
-                        요청
-                    </button>
-                   
-                    </div>
-                </div>
-      
-                </div>
-            </div>  
+                 </div>
+            </body>
+        </body>
         </div>
+        </div>
+        </div>  
+      </div>
     </section>
-</body>
+    <!--end main section-->
+  </body>
 </html>
