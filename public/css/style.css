@@ -64,7 +64,7 @@ button {
   justify-content: center;
 }
 #main {
-  background-image: url(/images/main.jpg);
+  background-image: url(/image/main.jpg);
   background-size: cover;
   background-position: top center;
 }
@@ -879,3 +879,53 @@ button {
   margin-top: 10px;
 }
 /* end modify contract */
+/* request payment (원도급) */
+.requestText {
+  width: 1200px;
+  height: 200px;
+  position: relative;
+  bottom: 10px;
+}
+.requestText textarea {
+  resize: none;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  color: white;
+}
+.twoBtn {
+  margin-top: 10px;
+  margin-left: 100px;
+  width: 1000px;
+  height: 50px;
+}
+.twoBtn button {
+  width: 150px;
+  position: relative;
+  bottom: 25px;
+  left: 20px;
+}
+/* end request payment */
+/* confirm request payment reject*/
+.reject {
+  position: relative;
+  bottom: 200px;
+  z-index: 1;
+  width: 600px;
+  height: 300px;
+  margin-left: 300px;
+}
+.reject textarea {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 5px 0 0 5px;
+  resize: none;
+  border-radius: 15px;
+}
+.reject button {
+  position: relative;
+  bottom: 30px;
+  left: 20px;
+  border: 1px solid #00ffff;
+}
+/* end confirm request payment reject*/ ;
