@@ -64,7 +64,7 @@ button {
   justify-content: center;
 }
 #main {
-  background-image: url(/image/main.jpg);
+  background-image: url(/images/main.jpg);
   background-size: cover;
   background-position: top center;
 }
