@@ -3,7 +3,7 @@ var express = require("express");
 var path = require("path");
 var app = express();
 var server = http.createServer(app);
-var port = 3000;
+var port = 3333;
 var session = require("express-session");
 
 app.set("views", path.join(__dirname, "views"));
