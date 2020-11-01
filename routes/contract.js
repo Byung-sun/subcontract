@@ -7,21 +7,44 @@ module.exports = function () {
   });
 
   router.route("/detail").post(function (req, res, next) {
-    const document_num = req.body.document_num;
-    console.log(document_num);
-    res.render("contract/contract2", { name: document_num });
+    const a = req.body.a;
+    const b = req.body.b;
+    const c = req.body.c;
+    const d = req.body.d;
+    const e = req.body.e;
+    const f = req.body.f;
+    const g = req.body.g;
+    const h = req.body.h;
+    const i = req.body.i;
+    const j = req.body.j;
+    const k = req.body.k;
+    const contract_info = a + "," + b + "," + c + "," + d + "," + e + "," + f + "," + g + "," + h + "," + i + "," + j + "," + k;
+    console.log(contract_info);
+    res.render("contract/contract2", { contract_info: contract_info });
+  });
+
+  router.route("/confirm").post(function (req, res, next) {
+    const a = req.body.a;
+    const b = req.body.b;
+    const c = req.body.c;
+    const d = req.body.d;
+    const e = req.body.e;
+    const f = req.body.f;
+    const g = req.body.g;
+    const h = req.body.h;
+    const i = req.body.i;
+    const contract_info = a + "," + b + "," + c + "," + d + "," + e + "," + f + "," + g + "," + h + "," + i;
+    const contract_info2 = contract_info.split(",");
+    console.log(contract_info2);
+    res.render("contract/confirm_contract", {contract_info: contract_info2});
   });
 
   router.route("/sign").post(function (req, res, next) {
-    res.redirect("/");
+    await res.redirect("/");
   });
 
   router.route("/modify").post(function (req, res, next) {
     res.render("contract/modify_contract");
-  });
-
-  router.route("/confirm").post(function (req, res, next) {
-    res.render("contract/confirm_contract");
   });
 
   router.route("/confirm_h").get(function (req, res, next) {
