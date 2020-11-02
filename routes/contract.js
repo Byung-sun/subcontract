@@ -1,5 +1,14 @@
 var express = require("express");
 var router = express.Router();
+var Web3 = require("web3");
+var product_contract = require("../contract/contract.js");
+
+
+var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+var smartcontract = new web3.eth.Contract(
+  product_contract.abi,
+  product_contract.address
+);
 
 module.exports = function () {
   router.get("/", function (req, res, next) {
@@ -40,8 +49,31 @@ module.exports = function () {
   router.route("/sign").post(function (req, res, next) {
     const a = req.body.a;
     const contract_info2 = a.split(",");
-    console.log(contract_info2);
-    res.redirect("/");
+    const contract_num = contract_info2[0];
+    console.log(contract_num);
+
+    
+    web3.eth.getAccounts(function(err, ass){
+      if(err != null){
+        console.log(err);
+        return
+      }
+      if(ass.length == 0){
+        console.log("Account defind")
+      }    
+      smartcontract.methods
+      .enroll_contract(contract_num, a)
+      .send({
+        from: ass[0],
+        gas: 200000,
+      })
+      .then(function (receipt) {
+        console.log(receipt);
+        res.redirect("/");
+      });
+    })
+    
+
   });
 
   router.route("/modify").post(function (req, res, next) {
@@ -65,7 +97,22 @@ module.exports = function () {
   });
 
   router.route("/view").get(function (req, res, next) {
-    res.render("contract/view_contract");
+    web3.eth.getAccounts(function(err, ass){
+      if(err != null){
+        console.log(err);
+        return
+      }
+      if(ass.length == 0){
+        console.log("Account defind")
+      }    
+      smartcontract.methods
+      .view_contract(1)
+      .call()
+      .then(function (receipt) {
+        console.log(receipt);
+        res.render("contract/view_contract", {contract_info : receipt});
+      });
+    })
   });
 
   return router;
