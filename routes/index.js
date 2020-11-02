@@ -1,6 +1,17 @@
 var express = require("express");
 var router = express.Router();
 
+var mysql = require('mysql2')
+
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '1234',
+  database: 'subcontract'
+})
+
 module.exports = function () {
   router.get("/", function (req, res, next) {
     res.render("index/login");
@@ -19,23 +30,36 @@ module.exports = function () {
     const password = req.body.password;
     const company_num = req.body.company_num;
     const company_name = req.body.company_name;
-    const person_name = req.body.person_name;
-    const phone = req.body.phone;
+    const manager_name = req.body.person_name;
+    const company_phone = req.body.phone;
     const company_address = req.body.company_address;
-    console.log(
-      "email = ",
-      email,
-      "password = ",
-      password,
-      "company = ",
-      company_num,
-      company_name,
-      company_address,
-      "person = ",
-      person_name,
-      phone
-    );
-    res.redirect("/");
+    connection.query(
+      `SELECT email from user where email = ?`,
+      [email],
+      function(err, result){
+          if(err){
+              console.log(err);
+              res.render('index/signUp', {errorMessage:"다시 한번 시도해주시기 바랍니다."});
+          }else if (result.length > 0){
+              console.log("result 존재");
+              res.render('index/signUp', {errorMessage:"이미 존재하는 ID입니다."})
+          }else { 
+            connection.query(
+              `insert into user (email, password, company_num, company_name, manager_name, company_phone, company_add) 
+              values (?,?,?,?,?,?,?)`,
+              [email, password, company_num, company_name, manager_name, company_phone, company_address],
+              function(err, result){
+                  if (err){
+                      console.log(err);
+                      res.render('index/signup', {errorMessage: "다시 한번 시도해주시기 바랍니다."})
+                  }else{
+                      res.redirect("/");
+                  }
+              }
+            )
+          }
+      }
+    )
   });
 
   router.route("/find_id").get(function (req, res, next) {
@@ -60,11 +84,27 @@ module.exports = function () {
   });
 
   router.route("/main").post(function (req, res, next) {
-    const id = req.body.email;
-    const pass = req.body.password;
-    console.log("id = ", id, "pass = ", pass);
+    const email = req.body.email;
+    const password = req.body.password;
 
-    res.render("index/main");
+    connection.query(
+      `select * from user where email = ? and password = ?`,
+      [email, password],
+      function(err, result){
+          if(err){
+              console.log(err);
+              res.redirect("/");
+          }else if(result.length > 0){
+              req.session.email = email;
+              req.session.password = password;
+              const company_name = result[0].company_name;
+              const manager_name = result[0].manager_name;
+              res.render("index/main", {manager : manager_name, company : company_name});
+          }else {
+              res.redirect("/");
+          }
+      }
+    ) 
   });
 
   return router;

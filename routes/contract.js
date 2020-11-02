@@ -34,13 +34,14 @@ module.exports = function () {
     const h = req.body.h;
     const i = req.body.i;
     const contract_info = a + "," + b + "," + c + "," + d + "," + e + "," + f + "," + g + "," + h + "," + i;
-    const contract_info2 = contract_info.split(",");
-    console.log(contract_info2);
-    res.render("contract/confirm_contract", {contract_info: contract_info2});
+    res.render("contract/confirm_contract", {contract_info: contract_info});
   });
 
   router.route("/sign").post(function (req, res, next) {
-    await res.redirect("/");
+    const a = req.body.a;
+    const contract_info2 = a.split(",");
+    console.log(contract_info2);
+    res.redirect("/");
   });
 
   router.route("/modify").post(function (req, res, next) {
