@@ -1,4 +1,12 @@
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
+  font-family: "NEXON Lv1 Gothic OTF";
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -51,7 +59,7 @@ button {
   width: 200px;
   height: 30px;
   background-color: rgb(187, 180, 180);
-  color: #00ffff;
+  color: black;
   border: 1px solid #00ffff;
   border-radius: 15px;
   cursor: pointer;
@@ -90,8 +98,9 @@ button {
 #main header .logo span {
   line-height: 70px;
   vertical-align: middle;
-  width: 200px;
-  color: white;
+  width: 500px;
+  color: #00ffff;
+  font-size: 36px;
 }
 #main header .nav {
   display: flex;
@@ -158,6 +167,8 @@ button {
 .signInInput input {
   display: block;
   margin-top: 60px;
+  font-size: 20px;
+  color: white;
 }
 .signInInput input::placeholder {
   color: white;
@@ -200,9 +211,11 @@ button {
   display: block;
   margin-top: 60px;
   color: white;
+  font-size: 20px;
 }
 .findIdInput input::placeholder {
   color: white;
+  font-size: 20px;
 }
 .findIdInput button {
   width: 200px;
@@ -289,6 +302,7 @@ button {
   padding-top: 20px;
   width: 330px;
   color: white;
+  font-size: 20px;
 }
 .signBlackboard .signUpList2 {
   margin: 0 0 0 20px;
@@ -300,15 +314,16 @@ button {
   width: 330px;
   padding-top: 20px;
   color: white;
+  font-size: 20px;
 }
 .signBlackboard .signUpList1 .signList::placeholder {
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 1px;
 }
 .signBlackboard .signUpList2 .signList::placeholder {
   color: white;
-  font-size: 16px;
+  font-size: 18px;
 }
 .signBlackboard .signUpList1 .emailConfirm {
   width: 100px;
@@ -328,6 +343,7 @@ button {
   width: 330px;
   color: white;
   letter-spacing: 1px;
+  font-size: 20px;
 }
 .signBlackboard .signUpList1 .signListBtn::placeholder {
   color: white;
@@ -353,22 +369,41 @@ button {
   line-height: 70px;
   vertical-align: middle;
   width: 200px;
-  color: white;
+  color: #00ffff;
+  font-size: 36px;
 }
 #main header .mainNav {
   display: flex;
   justify-content: flex-end;
   line-height: 70px;
-  width: calc(1280px - 60px);
-  margin-right: 220px;
+  width: 1280px;
+  margin-right: 200px;
 }
-.mainNav > li {
+.mainNav > li,
+ul {
   margin-left: 32px;
-  width: 90px;
+  width: 250px;
   color: white;
+  font-size: 20px;
+  justify-content: center;
+  position: relative;
+  right: 2%;
 }
-#welcome {
-  width: 150px;
+.mainNav > ul > li {
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 230px;
+  position: relative;
+  right: 28%;
+  color: white;
+  display: none;
+}
+.mainNav > ul:hover > li {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  height: 60px;
+  z-index: 2;
 }
 #main .blackboard {
   width: 840px;
@@ -413,7 +448,7 @@ button {
 }
 .loginDiv .board span {
   color: white;
-  font-size: 16px;
+  font-size: 32px;
 }
 .loginDiv .board .boardList {
   width: 380px;
@@ -422,7 +457,7 @@ button {
 }
 .loginDiv .board .boardList a {
   display: inline-block;
-  font-size: 14px;
+  font-size: 18px;
   color: white;
 }
 .loginLogo .mainMenuLogo {
@@ -457,13 +492,13 @@ button {
 }
 .loginLogo .mainMenuLogo .iconText .subTitle {
   display: inline;
-  font-size: 15px;
+  font-size: 18px;
   margin-left: 35px;
   margin-right: 20px;
 }
 .loginLogo .mainMenuLogo .iconText .subRequest {
   display: inline;
-  font-size: 14px;
+  font-size: 16px;
   margin-left: 30px;
   margin-right: 15px;
 }
@@ -528,8 +563,12 @@ button {
 }
 .contractBottom button {
   position: relative;
-  left: 85px;
+  left: 290px;
+  top: 20px;
   width: 120px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 10px;
 }
 .contractBottom a {
   position: relative;
@@ -633,11 +672,11 @@ button {
   position: relative;
   bottom: 60px;
 }
-.content table th {
-  color: rgb(175, 163, 163);
+.content table tr th {
+  color: white;
   background-color: #5a5454;
   font-size: 20px;
-  width: 200px;
+  width: 100px;
   height: 18px;
   line-height: 3;
 }
@@ -671,6 +710,7 @@ button {
   width: 420px;
   color: white;
   letter-spacing: 1px;
+  font-size: 20px;
 }
 .left1 input::placeholder {
   color: white;
@@ -684,7 +724,7 @@ button {
   resize: none;
   color: white;
   letter-spacing: 1px;
-  font-size: 14px;
+  font-size: 18px;
   padding-left: 10px;
   padding-top: 10px;
 }
@@ -884,7 +924,8 @@ button {
   width: 1200px;
   height: 200px;
   position: relative;
-  bottom: 10px;
+  bottom: 110px;
+  position: absolute;
 }
 .requestText textarea {
   resize: none;
@@ -892,12 +933,15 @@ button {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   color: white;
+  font-size: 18px;
 }
 .twoBtn {
   margin-top: 10px;
   margin-left: 100px;
   width: 1000px;
   height: 50px;
+  position: absolute;
+  top: 500px;
 }
 .twoBtn button {
   width: 150px;
@@ -910,10 +954,12 @@ button {
 .reject {
   position: relative;
   bottom: 200px;
+  left: 35px;
   z-index: 1;
-  width: 600px;
+  width: 800px;
   height: 300px;
   margin-left: 300px;
+  display: none;
 }
 .reject textarea {
   background-color: rgba(0, 0, 0, 0.85);
@@ -921,11 +967,14 @@ button {
   padding: 5px 0 0 5px;
   resize: none;
   border-radius: 15px;
+  font-size: 20px;
+  padding: 10px 10px 10px 15px;
 }
 .reject button {
   position: relative;
-  bottom: 30px;
-  left: 20px;
+  top: 90%;
+  right: 48%;
   border: 1px solid #00ffff;
+  width: 200px;
 }
 /* end confirm request payment reject*/ ;

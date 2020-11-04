@@ -29,8 +29,13 @@
                   />
                   <input
                     type="text"
+                    style="display: none;"
+                    value="<%=hado%>"
+                    name = "hado"
+                  />
+                  <input
+                    type="text"
                     placeholder="선급금 입금기간 (N 일 이내)"
-                    onfocus="this.value= '14'"
                     onblur="this.placeholder='선급금 입금기간 (N 일 이내)'"
                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                     onchange="dayChange(this);"
@@ -47,7 +52,6 @@
                   <input
                     type="text"
                     placeholder="기성금 지급 ( N ) 월"
-                    onfocus="this.value= '1'"
                     onblur="this.placeholder='기성금 지급 ( N ) 월'"
                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                     onchange="monthChange(this);"
@@ -57,7 +61,6 @@
                   <input
                     type="text"
                     placeholder="기성금 지급 횟수 ( N ) 회"
-                    onfocus="this.value= '1'"
                     onblur="this.placeholder='기성금 지급 횟수 ( N ) 회'"
                     name = "e"
                   />
@@ -105,25 +108,25 @@
                 </div>
               </div>
               <div class="contractBottom">
-                <button onclick="location.href =  '/writeContract.html';">이전 페이지</button>
-                <button type="submit" class="btn2">작성 완료</button>
+                <button style="margin-right: 10%;" onclick="location.href =  '/writeContract.html';">이전 페이지</button>
+                <button style="margin-right: 10%;" type="submit" class="btn2">작성 완료</button>
             </form>
           </div>
         </div>
       </div>
     </section>
     <script>
-      function insertComma(num) {
-        if (num.length <= 3) {
-          return num;
-        }
-        var count = Math.ceil(num.length / 3);
-        var newNum = [];
-        for (var i = 0; i < count; i++) {
-          newNum.unshift(num.slice(-3 * (i + 1), num.length - 3 * i));
-        }
-        return newNum.join(",");
-      }
+      // function insertComma(num) {
+      //   if (num.length <= 3) {
+      //     return num;
+      //   }
+      //   var count = Math.ceil(num.length / 3);
+      //   var newNum = [];
+      //   for (var i = 0; i < count; i++) {
+      //     newNum.unshift(num.slice(-3 * (i + 1), num.length - 3 * i));
+      //   }
+      //   return newNum.join(",");
+      // }
       function percentChange(input) {
         if (input.value < 0) input.value = 0;
         if (input.value > 100) input.value = 100;

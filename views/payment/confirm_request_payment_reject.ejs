@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <%- include ("../reference/head2.ejs") %>
     <title>D&D project confirm request payment</title>
   </head>
   <body>
@@ -11,15 +9,16 @@
     <section id="main">
       <!--main header -->
       <header>
-        <div class="mainLogo"><span>로고 및 회사명</span></div>
-        <ul class="mainNav">
-          <li>Home</li>
-          <li>Contract</li>
-          <li>Payment</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li id="welcome">환영합니다. 원도급님.</li>
-        </ul>
+        <%- include ("../reference/menu.ejs") %>
+        <script>
+            function reject() {
+            document.getElementById("reject").style.display="flex";
+        }
+           function cancel_reject() {
+            document.getElementById("reject").style.display="none";
+            document.getElementById("cancel_reject").value="";
+        }
+        </script>
       </header>
       <!--end main header -->
       <div class="main container">
@@ -48,25 +47,28 @@
               <!-- 두번째 줄 끝 -->
             </table>
           </div>
-          <div class="reject">
-            <textarea
-              cols="83"
+          <!--form 추가-->
+          <div class="reject" id="reject">
+            <textarea id="cancel_reject"
+              cols="150"
               rows="20"
               placeholder="반려 사유를 작성해주세요."
             ></textarea>
+
             <button>반려</button>
-            <button class="btn2">취소</button>
+            <button class="btn2" onclick="cancel_reject();">취소</button>
           </div>
-          <div class="requestText" style="position: relative; bottom: 65.1%">
-            <textarea cols="140px;" rows="13px" style="z-index: -1" readonly>
+          <div class="requestText">
+            <textarea cols="98px;" rows="9px" style="z-index: -1" readonly>
 <!--특별 예외금 신청 내역이 여기에 나와야 됩니다.-->
               </textarea
             >
           </div>
-          <div class="twoBtn" style="position: relative; bottom: 50.1%">
+          <div class="twoBtn">
             <button>요청 승인</button>
-            <button class="btn2">반려</button>
+            <button class="btn2" onclick="reject();">반려</button>
           </div>
+          <!--form 추가 끝-->
         </div>
       </div>
     </section>

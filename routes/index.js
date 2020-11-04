@@ -3,8 +3,6 @@ var router = express.Router();
 
 var mysql = require('mysql2')
 
-
-
 const connection = mysql.createConnection({
   host: 'localhost',
   port: 3306,
@@ -98,6 +96,7 @@ module.exports = function () {
           }else if(result.length > 0){
               req.session.email = email;
               req.session.password = password;
+              req.session.company_name = result[0].company_name;
               const company_name = result[0].company_name;
               const manager_name = result[0].manager_name;
               res.render("index/main", {manager : manager_name, company : company_name});
