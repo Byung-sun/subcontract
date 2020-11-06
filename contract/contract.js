@@ -1,4 +1,4 @@
-const address = "0xb407730130331Ed641B4F992e07d71ad91998542";
+const address = "0x596071F0058A05EB00eC956859Acc0fc6fA0F49F";
 
 const abi = [
 	{
@@ -73,13 +73,7 @@ const abi = [
 			}
 		],
 		"name": "enroll_contract",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -115,6 +109,50 @@ const abi = [
 			}
 		],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "payments",
+		"outputs": [
+			{
+				"internalType": "uint64",
+				"name": "contract_num",
+				"type": "uint64"
+			},
+			{
+				"internalType": "uint8",
+				"name": "state",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "total_cost",
+				"type": "string"
+			},
+			{
+				"internalType": "uint128",
+				"name": "ready_made_cost",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint128",
+				"name": "labor_cost",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint128",
+				"name": "exception_cost",
+				"type": "uint128"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -226,50 +264,6 @@ const abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "payments",
-		"outputs": [
-			{
-				"internalType": "uint64",
-				"name": "contract_num",
-				"type": "uint64"
-			},
-			{
-				"internalType": "uint8",
-				"name": "state",
-				"type": "uint8"
-			},
-			{
-				"internalType": "string",
-				"name": "total_cost",
-				"type": "string"
-			},
-			{
-				"internalType": "uint128",
-				"name": "ready_made_cost",
-				"type": "uint128"
-			},
-			{
-				"internalType": "uint128",
-				"name": "labor_cost",
-				"type": "uint128"
-			},
-			{
-				"internalType": "uint128",
-				"name": "exception_cost",
-				"type": "uint128"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint64",
 				"name": "_contract_num",
 				"type": "uint64"
@@ -353,6 +347,45 @@ const abi = [
 				"internalType": "uint128",
 				"name": "",
 				"type": "uint128"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "_contract_num",
+				"type": "uint64"
+			}
+		],
+		"name": "view_payment_state",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint128",
+				"name": "",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint128",
+				"name": "",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint128",
+				"name": "",
+				"type": "uint128"
+			},
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",

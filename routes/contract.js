@@ -68,6 +68,7 @@ module.exports = function () {
     var a_company = req.session.company_name;
     const contract_num = contract_info2[0];
     const total_cost = contract_info2[8];
+    console.log(a_company);
     console.log(contract_num);
     console.log(a);
     console.log(total_cost);
@@ -144,27 +145,40 @@ module.exports = function () {
       if(ass.length == 0){
         console.log("Account defind")
       }
+      console.log(ass[0]);
       connection.query(
         `select count(*) as cnt from contract`,
         function(err, result){
           if(err){
             console.log(err)
           }else{
-            const count = result;
+            const count = result[0].cnt;
+            console.log(count);
             connection.query(
               `select contract_num from contract`,
               function(err, result2){
                 if(err){
                   console.log(err)
                 }else{
-                  for(var i =0; i > count; i++){
+                  var contract_list = new Array();
+                  var contract_state = new Array();
+                  for(var i =0; i < count; i++){
+                    console.log(result2[i].contract_num);
                     smartcontract.methods
-                    .view_contract(result2[i])
+                    .view_contract(result2[i].contract_num)
                     .call()
                     .then(function (receipt) {
-                      console.log(receipt);
+                      console.log(receipt[0]);
+                      console.log(receipt[1]);
+                      const contract_info = receipt[0].split(",");
+                      contract_list.push(contract_info);
+                      contract_state.push(receipt[1]);
                     });
                   }
+                  setTimeout(() => {
+                    console.log(contract_list);
+                    res.render("contract/contract_list", {contract_info : contract_list, contract_state : contract_state})
+                  }, 2000);
                 }
               }
             )
@@ -172,10 +186,9 @@ module.exports = function () {
         }
       )    
     })
-    res.render("contract/contract_list");
   });
-
-  router.route("/view").get(function (req, res, next) {
+  router.route("/sign").get(function (req, res, next) {
+    const contract_num = req.query.contract_num;
     web3.eth.getAccounts(function(err, ass){
       if(err != null){
         console.log(err);
@@ -185,11 +198,106 @@ module.exports = function () {
         console.log("Account defind")
       }    
       smartcontract.methods
-      .view_contract(1)
+      .view_contract(contract_num)
       .call()
       .then(function (receipt) {
+        console.log(receipt[0]);
+        res.render("contract/sign_contract", {contract_info : receipt[0].split(",")});
+      });
+    })
+  });
+
+  router.route("/sign2").post(function (req, res, next) {
+    const a = req.body.a;
+    const contract_info2 = a.split(",");
+    const contract_num = contract_info2[0];
+    console.log(contract_num);
+
+    web3.eth.getAccounts(function(err, ass){
+      if(err != null){
+        console.log(err);
+        return
+      }
+      if(ass.length == 0){
+        console.log("Account defind")
+      }    
+      smartcontract.methods
+      .sign_contract(contract_num)
+      .send({
+        from: ass[1],
+        gas: 200000,
+      })
+      .then(function (receipt) {
         console.log(receipt);
-        res.render("contract/view_contract", {contract_info : receipt});
+        res.redirect("/");
+      });
+    })
+  });
+
+  router.route("/sign_o").get(function (req, res, next) {
+    const contract_num = req.query.contract_num;
+    web3.eth.getAccounts(function(err, ass){
+      if(err != null){
+        console.log(err);
+        return
+      }
+      if(ass.length == 0){
+        console.log("Account defind")
+      }    
+      smartcontract.methods
+      .view_contract(contract_num)
+      .call()
+      .then(function (receipt) {
+        console.log(receipt[0]);
+        res.render("contract/sign_o_contract", {contract_info : receipt[0].split(",")});
+      });
+    })
+  });
+
+  router.route("/sign2_o").post(function (req, res, next) {
+    const a = req.body.a;
+    const contract_info2 = a.split(",");
+    const contract_num = contract_info2[0];
+    console.log(contract_num);
+
+    web3.eth.getAccounts(function(err, ass){
+      if(err != null){
+        console.log(err);
+        return
+      }
+      if(ass.length == 0){
+        console.log("Account defind")
+      }    
+      smartcontract.methods
+      .confirm_contract(contract_num)
+      .send({
+        from: ass[0],
+        gas: 200000,
+      })
+      .then(function (receipt) {
+        console.log(receipt);
+        res.redirect("/");
+      });
+    })
+  });
+
+  router.route("/view").get(function (req, res, next) {
+    const contract_num = req.query.contract_num;
+    web3.eth.getAccounts(function(err, ass){
+      if(err != null){
+        console.log(err);
+        return
+      }
+      if(ass.length == 0){
+        console.log("Account defind")
+      }    
+      smartcontract.methods
+      .view_contract(contract_num)
+      .call()
+      .then(function (receipt) {
+        console.log(receipt[0]);
+        const contract_info = receipt[0].split(",");
+        res.render("contract/view_contract", {contract_info : contract_info});
       });
     })
   });
