@@ -35,17 +35,17 @@
                   </tr><!-- 두번째 줄 끝 -->
                 </table>
               </div>
-              <form method="POST" action="/payment/pay">
+              <form method="POST" action="/payment/confirm">
                 <div class="left1">
                   <input type="text" style="display: none;" name="contract_num" value="<%=contract_info[0]%>">
-                    <input type="text" name="ready_made_cost" placeholder="기성금 신청금액을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='기성금 신청금액을 입력해주세요.'">
-                    <input type="text" name="labor_cost" placeholder="노무금 신청금액을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='노무금 신청금액을 입력해주세요.'">
-                    <input type="text" name="exception_cost" placeholder="예외금 신청금액을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='예외금 신청금액을 입력해주세요.'">
+                    <input type="text" readonly name="ready_made_cost" value = "<%=contract_info[4]%>">
+                    <input type="text" readonly name="labor_cost" value = "<%=contract_info[5]%>">
+                    <input type="text" readonly name="exception_cost" value = "<%=contract_info[6]%>">
                 </div>
                 <div class="right1">
-                  <textarea name="etc" placeholder="기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요.'"></textarea> <!--db or bc 저장-->
+                  <textarea name="etc" value="<%=contract_info[7]%>" placeholder="기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요.'"></textarea> <!--db or bc 저장-->
                 </div>
-                <button type="submit">작성 완료</button>
+                <button type="submit">지급 완료</button>
               </form>
             </div>
         </div>

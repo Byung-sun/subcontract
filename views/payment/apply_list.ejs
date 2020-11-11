@@ -5,8 +5,8 @@
     <title>D&D project main</title>
   </head>
   <script>
-    function payment_list(contract_num){
-      location.href = "/payment/p_list?contract_num="+contract_num;
+    function payment_list(contract_num, p_state){
+      location.href = "/payment/request?contract_num="+contract_num+"&p_state="+p_state;
     }
   </script>
   <body>
@@ -19,7 +19,7 @@
       <!--end main header -->
       <div class="main container">
         <div class="paymentCompany">
-            <h1>View contract</h1>
+            <h1>Request & Confirm</h1>
             <div class="payBlackboard">
                 <h2>Contract list</h2>
                 <div class=content>
@@ -33,22 +33,27 @@
                             <th>지급 상태</th>
                           </tr>
                           <%
-                          console.log(contract_info);
-                          console.log(contract_state);
                           if (contract_info.length == 0){ %>
                             <tr>
                               <td colspan="6">지급 내역이 없습니다.</td>
                             </tr>
                           <%} else { for(var i=0; i < contract_info.length; i++) {
                             if(contract_state[i] == 2){%>
-                            <tr style="cursor:pointer;" onclick="payment_list('<%=contract_info[i][0]%>')">
+                            <tr style="cursor:pointer;" onclick="payment_list('<%=contract_info[i][0]%>', '<%=payment_list[i][0]%>')">
                             <td><%=i+1%></td>
                             <td><%=contract_info[i][2]%></td>
                             <td><%=contract_info[i][1]%></td>
                             <td><%=contract_info[i][3]%></td> 
                             <td><%=contract_info[i][8]%></td>
-                            <td><%=payment_list[i][4]%></td>
-                            <%}%>
+                            <%if (payment_list[i][0] == 1){%>
+                              <td>지급 요청</td>
+                            <%}else if (payment_list[i][0] == 2){%>
+                              <td>입금 확인</td>
+                            <%}else if (payment_list[i][0] == 3){%>
+                              <td>지급 완료</td>
+                            <%}else{%>
+                              <td>-</td>
+                            <%}}%>
                           </tr>
                           <%}}%>
                         </table>

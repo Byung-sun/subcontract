@@ -43,11 +43,19 @@
                             <!-- 첫번째 줄 시작 -->
                              <td><%=i+1%></td>
                              <td><%=payment_list[i][0]%></td>
-                             <td><%=payment_list[i][1]%></td>
                              <td><%=payment_list[i][2]%></td>
                              <td><%=payment_list[i][3]%></td>
                              <td><%=payment_list[i][4]%></td>
                              <td><%=payment_list[i][5]%></td>
+                             <%if (payment_list[i][1] == 1){%>
+                              <td>지급 요청</td>
+                              <%}else if (payment_list[i][1] == 2){%>
+                                <td>입금 확인</td>
+                              <%}else if (payment_list[i][1] == 3){%>
+                                <td>지급 완료</td>
+                              <%}else{%>
+                                <td>-</td>
+                              <%}%>
                             </tr>
                             <%}}%>
                         </table>

@@ -1,4 +1,4 @@
-const address = "0x596071F0058A05EB00eC956859Acc0fc6fA0F49F";
+const address = "0x740e37fc61D526cDb844C95195a2575255B24f02";
 
 const abi = [
 	{
@@ -41,6 +41,11 @@ const abi = [
 				"internalType": "uint128",
 				"name": "_exception_cost",
 				"type": "uint128"
+			},
+			{
+				"internalType": "string",
+				"name": "_etc",
+				"type": "string"
 			}
 		],
 		"name": "confirm_payment",
@@ -98,6 +103,11 @@ const abi = [
 				"internalType": "uint128",
 				"name": "_exception_cost",
 				"type": "uint128"
+			},
+			{
+				"internalType": "string",
+				"name": "_etc",
+				"type": "string"
 			}
 		],
 		"name": "payment",
@@ -150,6 +160,11 @@ const abi = [
 				"internalType": "uint128",
 				"name": "exception_cost",
 				"type": "uint128"
+			},
+			{
+				"internalType": "string",
+				"name": "etc",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -195,6 +210,11 @@ const abi = [
 				"internalType": "uint128",
 				"name": "_exception_cost",
 				"type": "uint128"
+			},
+			{
+				"internalType": "string",
+				"name": "_etc",
+				"type": "string"
 			}
 		],
 		"name": "refuse_payment",
@@ -229,16 +249,15 @@ const abi = [
 				"internalType": "uint128",
 				"name": "_exception_cost",
 				"type": "uint128"
-			}
-		],
-		"name": "request_payment",
-		"outputs": [
+			},
 			{
 				"internalType": "string",
-				"name": "",
+				"name": "_etc",
 				"type": "string"
 			}
 		],
+		"name": "request_payment",
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -381,6 +400,50 @@ const abi = [
 				"internalType": "uint128",
 				"name": "",
 				"type": "uint128"
+			},
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint64",
+				"name": "_contract_num",
+				"type": "uint64"
+			}
+		],
+		"name": "view_payments",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			},
 			{
 				"internalType": "uint8",
