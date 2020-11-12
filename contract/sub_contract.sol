@@ -53,7 +53,6 @@ contract subcontract {
     }
     
     function confirm_contract (uint64 _contract_num) public returns (string memory) {
-        address b_company = sub_contract[_contract_num].b_company;
         address confirmer = msg.sender;
         
         sub_contract[_contract_num].a_company = confirmer;
