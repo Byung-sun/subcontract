@@ -4,7 +4,6 @@ var Web3 = require("web3");
 var product_contract = require("../contract/contract.js");
 
 var mysql = require('mysql2');
-const contract = require("../contract/contract.js");
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -107,7 +106,7 @@ module.exports = function () {
                           console.log(err);
                       }else{
                         console.log(receipt);
-                        res.redirect("/");
+                        res.redirect("/contract/list");
                       }
                   }
                 )
@@ -229,7 +228,7 @@ module.exports = function () {
       })
       .then(function (receipt) {
         console.log(receipt);
-        res.redirect("/");
+        res.redirect("/contract/list");
       });
     })
   });
@@ -276,7 +275,7 @@ module.exports = function () {
       })
       .then(function (receipt) {
         console.log(receipt);
-        res.redirect("/");
+        res.redirect("/contract/list");
       });
     })
   });
@@ -300,6 +299,11 @@ module.exports = function () {
         res.render("contract/view_contract", {contract_info : contract_info});
       });
     })
+  });
+
+  router.route("/view_contract").post(function (req, res, next) {
+    
+    res.redirect("/contract/list");
   });
 
   return router;

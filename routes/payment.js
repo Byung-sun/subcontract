@@ -166,7 +166,9 @@ router.route("/p_list").get(function (req, res, next) {
         .call()
         .then(function (receipt2) {
           console.log(i, "payment list", receipt2[0]);
-          payment_list.push(receipt2);
+          if (contract_num == receipt2[0]){
+            payment_list.push(receipt2);
+          }
         });
       }
       
