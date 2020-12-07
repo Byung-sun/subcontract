@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Web3 = require("web3");
-var product_contract = require("../contract/contract.js");
+var product_contract = require("../contracts/contract.js");
 
 var mysql = require('mysql2');
 
@@ -39,7 +39,7 @@ module.exports = function () {
     const k = req.body.k;
     const l = req.body.l;
     const contract_info = a + "," + b + "," + c + "," + d + "," + e + "," + f + "," + g + "," + h + "," + i + "," + j + "," + k;
-    console.log(contract_info);
+    // console.log(contract_info);
     res.render("contract/contract2", { contract_info: contract_info , hado : l});
   });
 
@@ -56,7 +56,7 @@ module.exports = function () {
     const l = req.body.hado;
     const contract_info = a + "," + b + "," + c + "," + d + "," + e + "," + f + "," + g + "," + h + "," + i;
     const contract_info2 = contract_info.split(',');
-    console.log(contract_info);
+    // console.log(contract_info);
     res.render("contract/send_contract", {contract_info: contract_info2, hado: l});
   });
 
@@ -67,10 +67,10 @@ module.exports = function () {
     var a_company = req.session.company_name;
     const contract_num = contract_info2[0];
     const total_cost = contract_info2[8];
-    console.log(a_company);
-    console.log(contract_num);
-    console.log(a);
-    console.log(total_cost);
+    // console.log(a_company);
+    // console.log(contract_num);
+    // console.log(a);
+    // console.log(total_cost);
 
     web3.eth.getAccounts(function(err, ass){
       if(err != null){
@@ -118,21 +118,21 @@ module.exports = function () {
     })
   });
 
-  router.route("/modify").post(function (req, res, next) {
-    res.render("contract/modify_contract");
-  });
+  // router.route("/modify").post(function (req, res, next) {
+  //   res.render("contract/modify_contract");
+  // });
 
-  router.route("/confirm_h").get(function (req, res, next) {
-    res.render("contract/confirm_contract_h");
-  });
+  // router.route("/confirm_h").get(function (req, res, next) {
+  //   res.render("contract/confirm_contract_h");
+  // });
 
-  router.route("/company").get(function (req, res, next) {
-    res.render("contract/company_list");
-  });
+  // router.route("/company").get(function (req, res, next) {
+  //   res.render("contract/company_list");
+  // });
 
-  router.route("/company_h").get(function (req, res, next) {
-    res.render("contract/company_list_h");
-  });
+  // router.route("/company_h").get(function (req, res, next) {
+  //   res.render("contract/company_list_h");
+  // });
 
   router.route("/list").get(function (req, res, next) {
     console.log("list ")
@@ -144,7 +144,7 @@ module.exports = function () {
       if(ass.length == 0){
         console.log("Account defind")
       }
-      console.log(ass[0]);
+      // console.log(ass[0]);
       connection.query(
         `select count(*) as cnt from contract`,
         function(err, result){
@@ -175,7 +175,7 @@ module.exports = function () {
                     });
                   }
                   setTimeout(() => {
-                    console.log(contract_list);
+                    // console.log(contract_list);
                     res.render("contract/contract_list", {contract_info : contract_list, contract_state : contract_state})
                   }, 2000);
                 }
@@ -210,7 +210,7 @@ module.exports = function () {
     const a = req.body.a;
     const contract_info2 = a.split(",");
     const contract_num = contract_info2[0];
-    console.log(contract_num);
+    // console.log(contract_num);
 
     web3.eth.getAccounts(function(err, ass){
       if(err != null){
@@ -257,7 +257,7 @@ module.exports = function () {
     const a = req.body.a;
     const contract_info2 = a.split(",");
     const contract_num = contract_info2[0];
-    console.log(contract_num);
+    // console.log(contract_num);
 
     web3.eth.getAccounts(function(err, ass){
       if(err != null){

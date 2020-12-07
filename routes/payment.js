@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Web3 = require("web3");
-var product_contract = require("../contract/contract.js");
+var product_contract = require("../contracts/contract.js");
 
 var mysql = require('mysql2');
 
@@ -34,7 +34,7 @@ module.exports = function () {
     if(ass.length == 0){
       console.log("Account defind")
     }
-    console.log(ass[0]);
+    // console.log(ass[0]);
     connection.query(
       `select count(*) as cnt from contract`,
       function(err, result){
@@ -58,8 +58,8 @@ module.exports = function () {
                   .call()
                   .then(function (receipt) {
                     console.log(receipt);
-                    console.log(receipt[1]);
-                    console.log(receipt[4]);
+                    // console.log(receipt[1]);
+                    // console.log(receipt[4]);
                     const contract_info = receipt[0].split(",");
                     contract_list.push(contract_info);
                     contract_state.push(receipt[1]);
@@ -68,8 +68,8 @@ module.exports = function () {
                   });
                 }
                 setTimeout(() => {
-                  console.log(contract_list);
-                  console.log(payment_list);
+                  // console.log(contract_list);
+                  // console.log(payment_list);
                   res.render("payment/apply_list", 
                   {
                     contract_info : contract_list, 
@@ -95,7 +95,7 @@ router.route("/list").get(function (req, res, next) {web3.eth.getAccounts(functi
   if(ass.length == 0){
     console.log("Account defind")
   }
-  console.log(ass[0]);
+  // console.log(ass[0]);
   connection.query(
     `select count(*) as cnt from contract`,
     function(err, result){
@@ -113,7 +113,7 @@ router.route("/list").get(function (req, res, next) {web3.eth.getAccounts(functi
               var contract_list = new Array();
               var contract_state = new Array();
               for(var i =0; i < count; i++){
-                console.log(result2[i].contract_num);
+                // console.log(result2[i].contract_num);
                 smartcontract.methods
                 .view_contract(result2[i].contract_num)
                 .call()
@@ -126,7 +126,7 @@ router.route("/list").get(function (req, res, next) {web3.eth.getAccounts(functi
                 });
               }
               setTimeout(() => {
-                console.log(contract_list);
+                // console.log(contract_list);
                 res.render("payment/contract_list", 
                 {
                   contract_info : contract_list, 
@@ -145,7 +145,7 @@ router.route("/list").get(function (req, res, next) {web3.eth.getAccounts(functi
 
 router.route("/p_list").get(function (req, res, next) {
   const contract_num = req.query.contract_num;
-  console.log(contract_num);
+  // console.log(contract_num);
   web3.eth.getAccounts(function(err, ass){
     if(err != null){
       console.log(err);
@@ -158,7 +158,7 @@ router.route("/p_list").get(function (req, res, next) {
     .view_count()
     .call()
     .then(function (receipt) {
-      console.log(receipt);
+      // console.log(receipt);
       var payment_list = new Array();
       for(var i=0; i < receipt; i++){
         smartcontract.methods
@@ -173,7 +173,7 @@ router.route("/p_list").get(function (req, res, next) {
       }
       
       setTimeout(() => {
-        console.log(payment_list);
+        // console.log(payment_list);
         res.render("payment/payment_list", {payment_list: payment_list});
       }, 2000);
     });
@@ -183,7 +183,7 @@ router.route("/p_list").get(function (req, res, next) {
   router.route("/request").get(function (req, res, next) {
     const contract_num = req.query.contract_num;
     const p_state = req.query.p_state;
-    console.log(contract_num, p_state);
+    // console.log(contract_num, p_state);
     var contract_info = new Array();
     contract_info.push(contract_num);
     connection.query(
@@ -194,11 +194,12 @@ router.route("/p_list").get(function (req, res, next) {
           console.log(err)
         }else{
           if (p_state == 1){
+            console.log("result = ", result)
             smartcontract.methods
             .view_contract(contract_num)
             .call()
             .then(function (receipt){
-              console.log(receipt);
+              console.log("view_contract = ",receipt);
               const receipt_split = receipt[0].split(',');
               contract_info.push(result[0].a_company);
               contract_info.push(receipt_split[8]);
@@ -208,11 +209,12 @@ router.route("/p_list").get(function (req, res, next) {
               .view_payment_state(contract_num)
               .call()
               .then(function (receipt2){
-                console.log(receipt2)
+                console.log("view_contract_state = " , receipt2)
                 contract_info.push(receipt2[1]);
                 contract_info.push(receipt2[2]);
                 contract_info.push(receipt2[3]);
                 contract_info.push(receipt2[5]);
+                console.log("contract_info = ", contract_info);
                 res.render("payment/confirm_payment", {contract_info : contract_info});
               });
             })
@@ -221,17 +223,17 @@ router.route("/p_list").get(function (req, res, next) {
             .view_contract(contract_num)
             .call()
             .then(function (receipt){
-              console.log(receipt);
+              // console.log(receipt);
               const receipt_split = receipt[0].split(',');
               contract_info.push(result[0].a_company);
               contract_info.push(receipt_split[8]);
               contract_info.push(receipt_split[1]);
-              console.log(receipt_split);
+              // console.log(receipt_split);
               smartcontract.methods
               .view_payment_state(contract_num)
               .call()
               .then(function (receipt2){
-                console.log(receipt2)
+                console.log("view_contract_state = " , receipt2[5])
                 contract_info.push(receipt2[1]);
                 contract_info.push(receipt2[2]);
                 contract_info.push(receipt2[3]);
@@ -239,12 +241,14 @@ router.route("/p_list").get(function (req, res, next) {
                 res.render("payment/check_payment", {contract_info : contract_info});
               });
             })
+            
+
           }else{
             smartcontract.methods
             .view_contract(contract_num)
             .call()
             .then(function (receipt){
-              console.log(result[0].a_company);
+              // console.log(result[0].a_company);
               const receipt_split = receipt[0].split(',');
               contract_info.push(result[0].a_company);
               contract_info.push(receipt_split[8]);
@@ -298,10 +302,10 @@ router.route("/p_list").get(function (req, res, next) {
     const labor_cost = req.body.labor_cost;
     const exception_cost = req.body.exception_cost;
     const etc = req.body.etc;
-    console.log(contract_num);
-    console.log(ready_made_cost);
-    console.log(labor_cost);
-    console.log(exception_cost);
+    // console.log(contract_num);
+    // console.log(ready_made_cost);
+    // console.log(labor_cost);
+    // console.log(exception_cost);
 
     web3.eth.getAccounts(function(err, ass){
       if(err != null){
@@ -331,10 +335,10 @@ router.route("/p_list").get(function (req, res, next) {
     const labor_cost = req.body.labor_cost;
     const exception_cost = req.body.exception_cost;
     const etc = req.body.etc;
-    console.log(contract_num);
-    console.log(ready_made_cost);
-    console.log(labor_cost);
-    console.log(exception_cost);
+    // console.log(contract_num);
+    // console.log(ready_made_cost);
+    // console.log(labor_cost);
+    // console.log(exception_cost);
 
     web3.eth.getAccounts(function(err, ass){
       if(err != null){

@@ -12,6 +12,9 @@
         <%- include ("../reference/menu.ejs") %>
       </header>
       <!--end main header -->
+      <script>
+        console.log("contract_info = ",contract_info);
+      </script>
       <div class="main container">
         <div class="payBlackboard">
           <div class="writeTitle">
@@ -43,7 +46,7 @@
                     <input type="text" readonly name="exception_cost" value = "<%=contract_info[6]%>">
                 </div>
                 <div class="right1">
-                  <textarea name="etc" value="<%=contract_info[7]%>" placeholder="기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='기성금, 노무금, 예외금 등 특별신청 사유를 작성해주세요.'"></textarea> <!--db or bc 저장-->
+                  <textarea readonly name="etc"><%=contract_info[7]%></textarea> <!--db or bc 저장-->
                 </div>
                 <button type="submit">지급 완료</button>
               </form>
